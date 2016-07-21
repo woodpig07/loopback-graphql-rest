@@ -1,0 +1,57 @@
+{
+  "RestAPIService": {
+    "connector": "rest",
+    "debug": "false",
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://localhost:3001/api/customers/getMe",
+          "headers": {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "x-customer-id": "{customerId}"
+          }
+        },
+        "functions": {
+          "getCustomer": ["customerId"]
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://localhost:3001/api/customers/getMyCards",
+          "headers": {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "x-customer-id": "{customerId}"
+          }
+        },
+        "functions": {
+          "getCustomerCards": ["customerId"]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "http://localhost:3001/api/cards",
+          "headers": {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "x-customer-id": "{customerId}"
+          },
+          "body": {
+            "cardNumber": "{cardNumber}",
+            "code": "{code}",
+            "customerId": "{customerId}",
+            "domain": "{domain}",
+            "status": "{status}"
+          }
+        },
+        "functions": {
+          "addCard": ["customerId", "cardNumber", "code", "domain", "status"]
+        }
+      }
+    ]
+  }
+}

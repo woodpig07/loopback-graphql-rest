@@ -1,0 +1,38 @@
+{
+  "name": "card",
+  "plural": "cards",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "cardNumber": {
+      "type": "string",
+      "required": true,
+      "default": " "
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "default": " "
+    },
+    "customerId": {
+      "type": "string",
+      "required": true,
+      "default": ""      
+      },
+    "domain": {
+      "type": "string",
+      "default": "msr"
+    },
+    "status": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
