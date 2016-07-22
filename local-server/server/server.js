@@ -1,13 +1,13 @@
-var loopback = require('loopback');
-var boot = require('loopback-boot');
-var graphqlHTTP = require('express-graphql');
+import loopback from 'loopback';
+import boot from 'loopback-boot';
+import graphqlHTTP from 'express-graphql';
+import schemaFactory from './graphql'
 
-var app = module.exports = loopback();
-var schemaFactory = require('./graphql')
+var app = loopback();
 
-app.start = function() {
+app.start = () => {
   // start the web server
-  return app.listen(function() {
+  return app.listen(() => {
     app.emit('started');
     var baseUrl = app.get('url').replace(/\/$/, '');
     console.log('Web server listening at: %s', baseUrl);
@@ -20,10 +20,11 @@ app.start = function() {
 
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
+boot(app, __dirname, (err) => {
   if (err) throw err;
 
   // start the server if `$ node server.js`
+  // actually app will start when run `$ node index.js`
   if (require.main === module)
     app.start();
 });
@@ -34,3 +35,6 @@ app.use('/graphql', graphqlHTTP(req => ({
   pretty: true,
   graphiql: true
 })));
+
+// it looks babel does transpile if using `export default` here
+module.exports = app;
