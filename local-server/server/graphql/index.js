@@ -1,20 +1,23 @@
-const graphql = require('graphql');
+import {
+  GraphQLSchema,
+  GraphQLObjectType
+} from 'graphql';
 
-const customerQueryFactory = require('./queries/customer');
-const cardListQueryFactory = require('./queries/cardList');
-const addCardFactory = require('./mutations/addCard');
+import customerQueryFactory from './queries/customer';
+import cardListQueryFactory from './queries/cardList';
+import addCardFactory from './mutations/addCard';
 
-module.exports = (app) => {
+function schemaFactory (app) {
 
-  return new graphql.GraphQLSchema({
-    query: new graphql.GraphQLObjectType({
+  return new GraphQLSchema({
+    query: new GraphQLObjectType({
       name: 'Query',
       fields: {
         customer: customerQueryFactory(app),
         cardList: cardListQueryFactory(app)
       }
     }),
-    mutation: new graphql.GraphQLObjectType({
+    mutation: new GraphQLObjectType({
       name: 'mutation',
       fields: {
         addCard: addCardFactory(app)
@@ -22,3 +25,5 @@ module.exports = (app) => {
     })
   });
 };
+
+export default schemaFactory;

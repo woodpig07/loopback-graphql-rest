@@ -1,7 +1,7 @@
-const graphql = require('graphql');
-const cardType = require('../types/card');
+import {GraphQLString} from 'graphql';
+import cardType from '../types/card';
 
-var addCardFactory = (app) => {
+function addCardFactory (app) {
 
   const cardModel = app.models.Card;
   return {
@@ -9,19 +9,19 @@ var addCardFactory = (app) => {
     args: {
       cardNumber: {
         name: 'cardNumber',
-        type: graphql.GraphQLString
+        type: GraphQLString
       },
       code: {
         name: 'code',
-        type: graphql.GraphQLString
+        type: GraphQLString
       },
       domain: {
         name: 'domain',
-        type: graphql.GraphQLString
+        type: GraphQLString
       },
       status: {
         name: 'status',
-        type: graphql.GraphQLString
+        type: GraphQLString
       }
     },
     resolve: (source, args, context) => {
@@ -38,4 +38,4 @@ var addCardFactory = (app) => {
   };
 }
 
-module.exports = addCardFactory;
+export default addCardFactory;

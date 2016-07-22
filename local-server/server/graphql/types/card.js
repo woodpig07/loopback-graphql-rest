@@ -1,19 +1,22 @@
-const graphql = require('graphql');
+import {
+  GraphQLObjectType,
+  GraphQLString
+} from 'graphql';
 
-module.exports = new graphql.GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'Card',
   fields: {
     cardNumber: {
-      type: graphql.GraphQLString
+      type: GraphQLString
     },
     code: {
-      type: graphql.GraphQLString
+      type: GraphQLString
     },
     status: {
-      type: graphql.GraphQLString
+      type: GraphQLString
     },
     domain: {
-      type: graphql.GraphQLString
+      type: GraphQLString
     }
   }
 });

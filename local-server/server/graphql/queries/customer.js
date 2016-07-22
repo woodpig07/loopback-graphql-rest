@@ -1,7 +1,7 @@
-const graphql = require('graphql');
-const customerTypeFactory = require('../types/customer');
+import graphql from 'graphql';
+import customerTypeFactory from '../types/customer';
 
-var customerQueryFactory = (app) => {
+function customerQueryFactory (app) {
   var customerModel = app.models.Customer;
   return {
     type: customerTypeFactory(app),
@@ -19,4 +19,4 @@ var customerQueryFactory = (app) => {
   };
 }
 
-module.exports = customerQueryFactory;
+export default customerQueryFactory;

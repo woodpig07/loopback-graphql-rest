@@ -1,23 +1,27 @@
-const graphql = require('graphql');
-const cardType = require('./card');
+import {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLList
+} from 'graphql';
+import cardType from './card';
 
-module.exports = (app) => {
+function customerTypeFactory (app) {
   const cardModel = app.models.Card;
 
-  return new graphql.GraphQLObjectType({
+  return new GraphQLObjectType({
     name: 'Customer',
     fields: {
       username: {
-        type: graphql.GraphQLString
+        type: GraphQLString
       },
       firstName: {
-        type: graphql.GraphQLString
+        type: GraphQLString
       },
       lastName: {
-        type: graphql.GraphQLString
+        type: GraphQLString
       },
       cards: {
-        type: new graphql.GraphQLList(cardType),
+        type: new GraphQLList(cardType),
         resolve: (customer, args, context) => {
           return new Promise((resolve, reject) => {
             cardModel.getCustomerCards(context.header['x-customer-id'], (err, body, res) => {
@@ -32,3 +36,5 @@ module.exports = (app) => {
     }
   });
 };
+
+export default customerTypeFactory;

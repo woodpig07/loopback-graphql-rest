@@ -1,10 +1,10 @@
-const graphql = require('graphql');
-const cardType = require('../types/card');
+import {GraphQLList} from 'graphql';
+import cardType from '../types/card';
 
-var cardListQueryFactory = (app) => {
+function cardListQueryFactory (app) {
   const cardModel = app.models.Card;
   return {    
-    type: new graphql.GraphQLList(cardType),
+    type: new GraphQLList(cardType),
     args: {},
     resolve: (source, args, context) => {
       return new Promise((resolve, reject) => {
@@ -19,4 +19,4 @@ var cardListQueryFactory = (app) => {
   }
 };
 
-module.exports = cardListQueryFactory;
+export default cardListQueryFactory;
